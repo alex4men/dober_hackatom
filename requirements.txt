@@ -1,4 +1,5 @@
 ultralytics
+dill
 uvicorn[standard]
 gunicorn
 fastapi[all]

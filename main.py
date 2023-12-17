@@ -135,7 +135,7 @@ def img_object_detection_to_json(file: bytes = File(...)):
         dict: JSON format containing the Objects Detections.
     """
     # Step 1: Initialize the result dictionary with None values
-    result={'detect_objects': None}
+    result={'objects': None}
 
     # Step 2: Convert the image file to an image object
     input_image = get_image_from_bytes(file)
@@ -145,11 +145,13 @@ def img_object_detection_to_json(file: bytes = File(...)):
 
     # Step 4: Select detect obj return info
     # here you can choose what data to send to the result
-    detect_res = predict[['name', 'confidence']]
-    objects = detect_res['name'].values
+    # predict['bbox'] = [predict['xmin'], predict['ymin'], predict['xmax'], predict['ymax']]
+    # predict['score'] = predict['confidence']
+    detect_res = predict#[['name', 'confidence']]
+    # objects = detect_res['name'].values
 
-    result['detect_objects_names'] = ', '.join(objects)
-    result['detect_objects'] = json.loads(detect_res.to_json(orient='records'))
+    # result['detect_objects_names'] = ', '.join(objects)
+    result['objects'] = json.loads(detect_res.to_json(orient='records'))
 
     # Step 5: Logs and return
     logger.info("results: {}", result)

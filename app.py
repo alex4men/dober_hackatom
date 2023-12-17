@@ -6,7 +6,7 @@ import numpy as np
 from typing import Optional
 
 from ultralytics import YOLO
-from ultralytics.yolo.utils.plotting import Annotator, colors
+from ultralytics.utils.plotting import Annotator, colors
 
 
 # Initialize the models
@@ -143,8 +143,8 @@ def detect_sample_model(input_image: Image) -> pd.DataFrame:
         model=model_sample_model,
         input_image=input_image,
         save=False,
-        image_size=640,
+        image_size=(608,960),
         augment=False,
-        conf=0.5,
+        conf=0.25,
     )
     return predict
