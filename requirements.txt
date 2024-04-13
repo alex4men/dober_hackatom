@@ -6,3 +6,4 @@ fastapi[all]
 loguru
 pytest
 pytest-cov
+fiftyone
